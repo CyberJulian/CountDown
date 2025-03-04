@@ -1,0 +1,163 @@
+/* Tailwind base styles */
+@tailwind base;
+
+/* Tailwind component styles */
+@tailwind components;
+
+/* Tailwind utility classes */
+@tailwind utilities;
+
+/* Styling for the countdown display container */
+#countdown-display {
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center align items horizontally */
+  flex-wrap: wrap; /* Allow wrapping of child elements */
+}
+
+/* Styling for the flip clock container */
+.flip-clock {
+  display: flex; /* Use flexbox layout */
+  align-items: center; /* Center align items vertically */
+  gap: 10px; /* Space between flip cards */
+  flex-wrap: wrap; /* Allow wrapping of child elements */
+}
+
+/* Styling for each flip card */
+.flip-card {
+  position: relative; /* Position relative for absolute positioning of child elements */
+  width: 60px; /* Set width of flip card */
+  height: 80px; /* Set height of flip card */
+  perspective: 1000px; /* Create 3D effect */
+  display: flex; /* Use flexbox layout */
+  flex-direction: column; /* Arrange child elements in a column */
+  align-items: center; /* Center align items horizontally */
+  justify-content: center; /* Center align items vertically */
+}
+
+/* Styling for the top and bottom parts of the flip card */
+.flip-card .top,
+.flip-card .bottom {
+  width: 100%; /* Full width of flip card */
+  height: 50%; /* Half height of flip card */
+  background-color: #333; /* Dark background color */
+  color: #fff; /* White text color */
+  display: flex; /* Use flexbox layout */
+  justify-content: center; /* Center align text horizontally */
+  align-items: center; /* Center align text vertically */
+  font-size: 1.5rem; /* Large font size */
+  font-weight: bold; /* Bold text */
+  border-radius: 5px; /* Rounded corners */
+  overflow: hidden; /* Hide overflow */
+  transition: font-size 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+/* Initial position of the top part of the flip card */
+.flip-card .top {
+  transform: translateY(-50%); /* Move up by 50% */
+}
+
+/* Initial position of the bottom part of the flip card */
+.flip-card .bottom {
+  position: absolute; /* Absolute positioning */
+  top: 50%; /* Position at the middle */
+  transform-origin: top; /* Rotate around the top edge */
+  transform: rotateX(0deg) translateY(-50%); /* Initial position */
+}
+
+/* Animation when the flip card is flipped */
+.flip-card.flip .top {
+  animation: flip-top 0.5s forwards; /* Animate top part */
+}
+
+.flip-card.flip .bottom {
+  animation: flip-bottom 0.5s forwards; /* Animate bottom part */
+}
+
+/* Keyframes for the top part flip animation */
+@keyframes flip-top {
+  0% { transform: rotateX(0deg) translateY(-50%); } /* Initial position */
+  100% { transform: rotateX(-90deg) translateY(-50%); } /* Final position */
+}
+
+/* Keyframes for the bottom part flip animation */
+@keyframes flip-bottom {
+  0% { transform: rotateX(90deg) translateY(-50%); } /* Initial position */
+  100% { transform: rotateX(0deg) translateY(-50%); } /* Final position */
+}
+
+/* Styling for the labels below each flip card */
+.label {
+  font-size: 1rem; /* Font size for labels */
+  margin-top: 10px; /* Margin above the label */
+  text-align: center; /* Center align text */
+}
+
+/* Styling for the fullscreen button */
+#fullscreen-button {
+  display: inline-block; /* Inline-block display */
+}
+
+/* Styling for the reset button */
+#reset-button {
+  display: inline-block; /* Inline-block display */
+  margin-left: 10px; /* Space between buttons */
+}
+
+/* Media query for portrait orientation */
+@media (orientation: portrait) {
+  /* Styles for portrait orientation */
+
+  /* Adjust layout of flip clock in portrait mode */
+  .flip-clock {
+    flex-direction: column; /* Arrange flip cards in a column */
+    align-items: center; /* Center align items horizontally */
+  }
+
+  /* Adjust dimensions and font size of flip cards */
+  .flip-card {
+    width: 60px; /* Width of flip card */
+    height: 80px; /* Height of flip card */
+  }
+
+  .flip-card .top,
+  .flip-card .bottom {
+    font-size: calc(0.8 * var(--card-width, 30px)); /* Dynamic font size */
+    line-height: 1; /* Single line height */
+  }
+
+  .label {
+    font-size: 0.75rem; /* Smaller font size for labels */
+    margin-top: 0.5px; /* Margin above the label */
+  }
+
+  /* Adjust padding and font size of buttons */
+  .button {
+    padding: 0.25rem 0.5rem; /* Smaller padding */
+    font-size: 0.5rem; /* Smaller font size */
+    display: flex; /* Use flexbox layout */
+    justify-content: center; /* Center align items horizontally */
+    align-items: center; /* Center align items vertically */
+  }
+
+  /* Adjust dimensions and font size of reset button */
+  #reset-button {
+    width: 80px; /* Width of reset button */
+    height: 30px; /* Height of reset button */
+    font-size: 0.6rem; /* Font size of reset button */
+  }
+
+  /* Adjust dimensions and font size of fullscreen button */
+  #fullscreen-button {
+    width: 80px; /* Width of fullscreen button */
+    height: 30px; /* Height of fullscreen button */
+    font-size: 0.52rem; /* Font size of fullscreen button */
+  }
+
+  /* Center images inside buttons */
+  .button img {
+    display: block;
+    margin: auto;
+    height: 20px; /* Adjust height if necessary */
+    width: 20px; /* Adjust width if necessary */
+  }
+}

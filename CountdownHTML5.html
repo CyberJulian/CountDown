@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+  
+  <!-- Tailwind CSS for styling -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  
+  <!-- Custom CSS file for additional styles -->
+  <link href="CountDownCSS5.css" rel="stylesheet">
+
+  <!-- Inline CSS for button styles and animations -->
+  <style>
+    /* General button styles */
+    .button {
+      position: relative; /* Positioning context for pseudo-elements */
+      overflow: hidden; /* Hide overflowing pseudo-elements */
+      padding: 0.5rem 1rem; /* Padding for the button */
+      border: none; /* No border */
+      outline: none; /* No outline */
+      cursor: pointer; /* Pointer cursor on hover */
+      transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for background and shadow */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Initial shadow effect */
+    }
+
+    /* Button hover state */
+    .button:hover {
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+    }
+
+    /* Pseudo-elements for ripple effect */
+    .button::before,
+    .button::after {
+      content: ''; /* Empty content for pseudo-elements */
+      position: absolute; /* Position relative to the button */
+      width: 200%; /* Double the width of the button */
+      height: 200%; /* Double the height of the button */
+      background-color: rgba(255, 255, 255, 0.1); /* Light white background */
+      border-radius: 50%; /* Circular shape */
+      transform: scale(0); /* Start scale at 0 */
+      transition: transform 0.5s ease; /* Smooth transition for scaling */
+      pointer-events: none; /* Ignore pointer events */
+    }
+
+    /* Positioning the before pseudo-element */
+    .button::before {
+      top: 50%; /* Center vertically */
+      left: 50%; /* Center horizontally */
+      transform: translate(-50%, -50%) scale(0); /* Center the element and scale to 0 */
+    }
+
+    /* Positioning the after pseudo-element */
+    .button::after {
+      top: 50%; /* Center vertically */
+      left: 50%; /* Center horizontally */
+      transform: translate(-50%, -50%) scale(0); /* Center the element and scale to 0 */
+    }
+
+    /* Hover effect for pseudo-elements */
+    .button:hover::before,
+    .button:hover::after {
+      transform: translate(-50%, -50%) scale(1); /* Scale to full size */
+      transition-duration: 1s; /* Duration for the transition */
+    }
+  </style>
+</head>
+<body class="bg-gray-100"> <!-- Sets background color to light gray -->
+  <div class="container mx-auto mt-8 min-h-screen flex justify-center items-center">
+    <!-- Main container to center the content -->
+    <div class="text-center">
+      <!-- Center-aligned text -->
+      <h2 class="text-xl font-bold mb-4">Countdown</h2>
+      <!-- Countdown heading -->
+      <div class="flex justify-center">
+        <!-- Container for date input -->
+        <div>
+          <label for="countdown-date" class="mr-2">Date:</label>
+          <!-- Date input field -->
+          <input type="date" id="countdown-date" class="border p-2 rounded w-40">
+        </div>
+      </div>
+      <div class="flex justify-center mt-2">
+        <!-- Container for time input -->
+        <div>
+          <label for="countdown-time" class="mr-2">Time:</label>
+          <!-- Time input field -->
+          <input type="time" id="countdown-time" class="border p-2 rounded w-40">
+        </div>
+      </div>
+      <div id="countdown-display" class="mt-4 rounded bg-gray-200 p-4 flex justify-center">
+        <!-- Countdown display area -->
+        <div class="flip-clock">
+          <!-- Flip clock for displaying the countdown -->
+          <div class="flip-card">
+            <div class="top" id="days-top">99</div>
+            <!-- Display for the top part of the days -->
+            <div class="bottom" id="days-bottom">99</div>
+            <!-- Display for the bottom part of the days -->
+          </div>
+          <div class="label">Days</div>
+          <!-- Label for days -->
+          <div class="flip-card">
+            <div class="top" id="hours-top">99</div>
+            <!-- Display for the top part of the hours -->
+            <div class="bottom" id="hours-bottom">99</div>
+            <!-- Display for the bottom part of the hours -->
+          </div>
+          <div class="label">Hours</div>
+          <!-- Label for hours -->
+          <div class="flip-card">
+            <div class="top" id="minutes-top">99</div>
+            <!-- Display for the top part of the minutes -->
+            <div class="bottom" id="minutes-bottom">99</div>
+            <!-- Display for the bottom part of the minutes -->
+          </div>
+          <div class="label">Minutes</div>
+          <!-- Label for minutes -->
+          <div class="flip-card">
+            <div class="top" id="seconds-top">99</div>
+            <!-- Display for the top part of the seconds -->
+            <div class="bottom" id="seconds-bottom">99</div>
+            <!-- Display for the bottom part of the seconds -->
+          </div>
+          <div class="label">Seconds</div>
+          <!-- Label for seconds -->
+        </div>
+      </div>
+      <div class="flex justify-center">
+        <!-- Container to center the buttons -->
+        <div class="button-container">
+          <!-- Full Screen button with image -->
+          <button id="fullscreen-button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-4 button">
+            <img src="fullscreen-image.png" alt="Full Screen" style="height: 20px; width: 20px;">
+          </button>
+          <!-- Reset button with image -->
+          <button id="reset-button" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded mt-4 button">
+            <img src="reset-image.png" alt="Reset" style="height: 20px; width: 20px;">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- JavaScript file for countdown functionality -->
+  <script src="CountDownJS5.js"></script>
+</body>
+<footer style="font-size: 8px;">
+  <!-- Footer with a personal message -->
+  <p>To my Peanut <3</p>
+</footer>
+</html>
